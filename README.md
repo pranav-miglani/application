@@ -16,6 +16,7 @@ and specify the user credentials in application-configuration.properties
 * Kindly note that the application-configuration.properties is being used to override all the application properties possible in the project.
 
 
+
      ↓ Web : This modules serves as the controller of all the incoming requests , it has its security context being wrapped up  and validates all the input file incoming.
      ↓ Service : This module wraps the business logic that needs to be provided to the application like validating the request , performing operations and then returning the control to web    
      ↓ Integration : This module act as facade for all the third party integrations that are being done. thus segregating all the dependencies
