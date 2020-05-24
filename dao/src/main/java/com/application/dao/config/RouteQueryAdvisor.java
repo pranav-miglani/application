@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,10 @@ public class RouteQueryAdvisor implements Ordered {
         return order;
     }
 
+    @Autowired
+    DbContextHolder dbContextHolder;
+
+
     @Around("@annotation(com.application.dao.annotations.ReadOnly)")
     public Object aroundReadOnly(ProceedingJoinPoint pjp) throws Throwable {
         try {
@@ -36,13 +41,13 @@ public class RouteQueryAdvisor implements Ordered {
             }
             log.info(" is switching to slave transaction ");
             DataSourceType dataSourceType = DataSourceType.SLAVE;
-            DbContextHolderImpl.setDbType(dataSourceType);
+            dbContextHolder.setDbType(dataSourceType);
             Object res = pjp.proceed();
-            DbContextHolderImpl.clearDbType();
+            dbContextHolder.clearDbType();
             return res;
         } finally {
             // restore state
-            DbContextHolderImpl.clearDbType();
+            dbContextHolder.clearDbType();
         }
 
     }

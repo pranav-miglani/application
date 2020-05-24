@@ -1,20 +1,23 @@
 package com.application.dao.config;
 
-public class DbContextHolderImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DbContextHolderImpl implements DbContextHolder {
 
     private final static ThreadLocal<DataSourceType> contextHolder = new ThreadLocal<DataSourceType>();
 
-    public static void setDbType(DataSourceType dbType) {
+    public void setDbType(DataSourceType dbType) {
         if (dbType == null)
             throw new RuntimeException("DbType can't be null");
         contextHolder.set(dbType);
     }
 
-    public static DataSourceType getDbType() {
+    public DataSourceType getDbType() {
         return (DataSourceType) contextHolder.get();
     }
 
-    public static void clearDbType() {
+    public void clearDbType() {
         contextHolder.remove();
     }
 }
