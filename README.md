@@ -1,10 +1,6 @@
 ### Reference Documentation
-Use case : 
-A sample project which has the below implementation :
-
 
 The project is divided into below applications :
-
 
 **1) Web Application** 
 
@@ -41,6 +37,9 @@ The Listener application act as a facade to provide an async behaviour to the ap
      ↓ Integration : This module act as facade for all the third party integrations that are being done. thus segregating all the dependencies
      ↓ Dao : This module provides the interface for the database where in the file is saved , records are created for the files and these records are then updated with Geo Codes
      ↓ Commons : This module provides the basic application perspective like the rest processor for api , metrics utility to debug the application logs etc
+
+## `Common To All`
+The metrics is being push via StatsD client and its configuration can be overridden in the application-configuration.properties
 
 
 
