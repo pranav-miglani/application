@@ -32,7 +32,7 @@ All the request to the api gateway are made and below is the heirarchy of the ap
 
 
 
-**2) Listener Application** 
+**3) Listener Application** 
 
 The Listener application act as a facade to provide an async behaviour to the application and based on various topics it can be assume to provide a mimic behaviour of a state machine. 
 
